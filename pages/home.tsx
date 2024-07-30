@@ -12,14 +12,16 @@ import { getWeeklyMenu } from "@service/getMealMenuService";
 import { DayMenu, Meal, WeeklyMenu } from "../types/weeklyMealsResponse";
 import { Skeleton } from "@components/ui/skeleton";
 import WeeklyMenuComponent from "@components/weeklymenu";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
   const session = useSession({
     required: true,
     onUnauthenticated() {
-      redirect('/signin');
+      router.push('/signin'); 
     },
   });
   
@@ -74,7 +76,7 @@ export default function Home() {
     <div className="container mx-auto my-4">
       <div className="flex justify-between">
       <h3 className="text-2xl font-semibold leading-none tracking-tight">User area</h3>
-      <Button>Logout</Button>
+      <Button onClick={() => signOut()}>Logout</Button>
       </div>
       <Tabs defaultValue="meals" className="w-full">
         <TabsList className="grid w-full grid-cols-3 my-4">
