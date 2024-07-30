@@ -8,11 +8,9 @@ import {
 } from "@components/ui/tabs";
 import { Toggle } from "@components/ui/toggle";
 import { useEffect, useState } from "react";
-import { WeeklyMenuObject } from "@utils/WeeklyMenuObject";
 import { getWeeklyMenu } from "@service/getMealMenuService";
 import { DayMenu, Meal, WeeklyMenu } from "../types/weeklyMealsResponse";
 import { Skeleton } from "@components/ui/skeleton";
-import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@components/ui/table";
 import WeeklyMenuComponent from "@components/weeklymenu";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
@@ -74,7 +72,7 @@ export default function Home() {
 
   return (
     <div className="container mx-auto my-4">
-      <div className="justify-between">
+      <div className="flex justify-between">
       <h3 className="text-2xl font-semibold leading-none tracking-tight">User area</h3>
       <Button>Logout</Button>
       </div>
@@ -90,7 +88,7 @@ export default function Home() {
               <ul>
                 {daysOfWeek.map(day => (
                   <li key={day}>
-                    <Toggle onPressedChange={(pressed) => addToList(day, pressed)} className="w-[90px] lg:min-w-[100px]">
+                    <Toggle onPressedChange={(pressed) => addToList(day, pressed)} className="my-2 w-[90px] lg:min-w-[100px]">
                       {day}
                     </Toggle>
                   </li>
@@ -116,7 +114,7 @@ export default function Home() {
               <ul>
                 {daysOfWeek.map(day => (
                   <li key={day}>
-                    <Toggle className="min-w-[100px]">{day}</Toggle>
+                    <Toggle className="min-w-[100px] my-1">{day}</Toggle>
                   </li>
                 ))}
               </ul>
@@ -131,5 +129,3 @@ export default function Home() {
     </div>
   );
 }
-
-Home.requireAuth = true

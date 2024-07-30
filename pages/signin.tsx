@@ -1,17 +1,17 @@
-import Image from "next/image"
-import Link from "next/link"
+import Image from "next/image";
+import Link from "next/link";
 import { signIn } from 'next-auth/react';
-import { Button } from "@components/ui/button"
-import { Input } from "@components/ui/input"
-import { Label } from "@components/ui/label"
-import { useState } from "react"
-import { useRouter } from "next/router"
-
+import { Button } from "@components/ui/button";
+import { Input } from "@components/ui/input";
+import { Label } from "@components/ui/label";
+import { useState } from "react";
+import { useRouter } from "next/router";
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
+
   return (
     <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
       <div className="flex items-center justify-center py-12">
@@ -53,7 +53,7 @@ export default function Login() {
                 required />
             </div>
             <Button
-              onClick={() => signIn('credentials', {email, password, redirect: true, callbackUrl: '/home'})}
+              onClick={() => signIn('credentials', { email, password, redirect: true, callbackUrl: '/home' })}
               disabled={!email || !password}
               type="submit"
               className="w-full"
